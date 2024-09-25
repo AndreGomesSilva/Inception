@@ -1,5 +1,9 @@
 FROM debian:oldstable
 
+ARG WP_ADMIN_USR
+ARG WP_ADMIN_PWD
+ARG DB_NAME
+
 RUN apt-get update -y && \
     apt-get install mariadb-server -y && \
     rm -rf /var/lib/apt/lists/*

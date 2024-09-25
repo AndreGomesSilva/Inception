@@ -21,6 +21,7 @@ networks:
     name: inception
 
 services:
+############################### NGINX ##########################################
   nginx:
     container_name: nginx
     build: ./requirements/nginx/.
@@ -33,9 +34,11 @@ services:
      - wordpress_volume:/var/www/html
     networks:
       - inception
-    env_file:
-      - ./env
+    environment:
+      - CERTS_KEY
+      - CERTS_CRT
     restart: always
+############################### WORDPRESS ##########################################
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress/.
@@ -44,21 +47,32 @@ services:
       - mariadb
     volumes:
       - wordpress_volume:/var/www/html
-    env_file:
-      - ./env
+    environment:
+      - DOMAIN_NAME
+      - DB_NAME
+      - WP_ADMIN_USR
+      - WP_ADMIN_PWD
+      - WP_ADMIN_EMAIL
+      - WP_TITLE
+      - WP_USR
+      - WP_PWD
+      - WP_EMAIL
     networks:
       - inception
     expose:
       - 9000
     restart: always
+############################### MARIADB ##########################################
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb/.
     image: mariadb:42
     volumes:
       - mariadb_volume:/var/lib/mysql
-    env_file:
-      - ./env
+    environment:
+      - DB_NAME
+      - WP_ADMIN_USR
+      - WP_ADMIN_PWD
     networks:
       - inception
     expose:

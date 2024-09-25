@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 wp --allow-root config create \
-  --dbname="$db_name" \
-  --dbuser="$db_user" \
-  --dbpass="$db_pwd" \
+  --dbname="$DB_NAME" \
+  --dbuser="$WP_ADMIN_USR" \
+  --dbpass="$WP_ADMIN_PWD" \
   --dbhost=mariadb \
   --dbprefix="wp_"
 
