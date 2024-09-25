@@ -1,11 +1,19 @@
-FROM debian:bullseye
+FROM debian:oldstable
 
-RUN apt-get update -y && apt-get install mariadb-server -y
+RUN apt-get update -y && \
+    apt-get install mariadb-server -y && \
+    rm -rf /var/lib/apt/lists/*
 
-COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
+RUN mkdir -p /var/run/mysqld && \
+    chown -R mysql:mysql /var/run/mysqld && \
+    chmod 777 /var/run/mysqld
 
-COPY ./tools/script.sh /
+COPY ./conf/mariadb.cnf /etc/mysql/mariadb.conf.d/
+RUN chmod 644 /etc/mysql/mariadb.conf.d/mariadb.cnf
 
-#RUN chmod +x ./tools/script.sh
+COPY ./tools/script.sh /tmp/script.sh
 
-CMD ["/script.sh"]
+RUN chmod 777 /tmp/script.sh && bash /tmp/script.sh
+
+CMD ["mysqld_safe"]
+

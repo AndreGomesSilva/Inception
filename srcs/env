@@ -1,23 +1,18 @@
-
-
-DOMAIN_NAME=angomes-.42.fr
-CERTS_=/etc/ssl/certs/nginx-selfsigned.crt
+DOMAIN_NAME=angomes.42.fr
 
 
 # WORDPRESS SETUP
-WP_TITLE=wpPage
-WP_ADMIN_USR=supervisor
-WP_ADMIN_PWD=1234
-WP_ADMIN_EMAIL=dre.gsilva@gmail.com
-WP_USR=angomes- 
-WP_EMAIL=angomes-@student.42sp.org.br
-WP_PWD=123
-db_name=maria
-db_user=and
-db_pwd=tt
+WP_TITLE="Inception"
+WP_ADMIN_USR=angomes
+WP_ADMIN_PWD=angomes
+WP_ADMIN_EMAIL=angomes.email.com
+
+WP_USR=user
+WP_EMAIL=user@email.br
+WP_PWD=user
 
 
 # MYSQL SETUP
-db1_name=maria
-db1_user=and
-db1_pwd=tt
+db_name=database;
+db_user=user
+db_pwd=user
