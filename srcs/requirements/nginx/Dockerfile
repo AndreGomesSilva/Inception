@@ -5,9 +5,9 @@ ARG CERTS_CRT
 
 RUN apt update -y && apt upgrade -y
 
-RUN apt install -y nginx && apt install  openssl -y
+RUN apt install nginx -y && apt install openssl -y
 
-RUN  openssl req -x509 -sha256 -nodes -newkey rsa:4096 -days 365 -subj "/C=BR/ST=Sao Paulo/O=42SP/OU=Inception/CN=angomes-.42.fr" -keyout ${CERTS_KEY} -out ${CERTS_CRT}
+RUN  openssl req -batch -x509 -sha256 -nodes -newkey rsa:4096 -days 365 -subj "/C=BR/ST=Sao Paulo/O=42SP/OU=Inception/CN=angomes-.42.fr" -keyout /etc/ssl/private/private.key -out /etc/ssl/certs/certificate.crt
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d
 
