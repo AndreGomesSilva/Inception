@@ -18,6 +18,8 @@ RUN apt install wget -y
 
 RUN apt install php7.4 php-fpm php-mysql -y
 
+RUN mkdir /run/php
+
 RUN apt install mariadb-client wordpress -y && \
 rm -rf /var/lib/apt/lists/*
 
@@ -26,9 +28,7 @@ chmod 755 /var/www/wordpress
 
 RUN wget -O /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 chmod +x /usr/local/bin/wp && \
-wp core download --allow-root --path=/var/www/wordpress --debug
-
-RUN mkdir /run/php
+wp core download --allow-root --path=/var/www/wordpress
 
 COPY ./tools/script.sh /tmp/script.sh
 
