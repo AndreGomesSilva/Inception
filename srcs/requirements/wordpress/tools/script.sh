@@ -21,6 +21,7 @@ wp user create --allow-root \
   --user_pass=$WP_PWD \
   --role='author'
 
-wp theme install astra --activate --allow-root
+#wp theme install astra --activate --allow-root
+wp --allow-root theme activate twentytwentyfour
 
 exec php-fpm7.4 -F

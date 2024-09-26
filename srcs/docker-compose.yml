@@ -80,14 +80,22 @@ services:
 ############################### NGINX ##########################################
   nginx:
     container_name: nginx
-    build: ./requirements/nginx/.
     image: nginx:42
+    build:
+      context: requirements/nginx
+    #   args:
+    #     - CERTS_KEY=${CERTS_KEY}
+    #     - CERTS_CRT=${CERTS_CRT}
+    # environment:
+    #     - CERTS_KEY
+    #     - CERTS_CRT
     ports:
      - 443:443
     depends_on:
       - wordpress
+      - mariadb
     volumes:
-     - wordpress_volume:/var/www/html
+     - wordpress_volume:/var/www/wordpress
     networks:
       - inception
     restart: on-failure
