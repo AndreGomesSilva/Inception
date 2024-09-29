@@ -1,7 +1,7 @@
 FROM debian:oldstable
 
-ARG CERTS_KEY
-ARG CERTS_CRT
+#ARG CERTS_KEY
+#ARG CERTS_CRT
 
 RUN apt update -y && apt upgrade -y
 
