@@ -83,6 +83,12 @@ services:
     image: nginx:42
     build:
       context: requirements/nginx
+      args:
+      - CERTS_CRT=${CERTS_CRT}
+      - CERTS_KEY=${CERTS_KEY}
+    environment:
+    - CERTS_KEY
+    - CERTS_CRT
     ports:
      - 443:443
     depends_on:

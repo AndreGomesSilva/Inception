@@ -6,6 +6,7 @@ wp core install --allow-root --path=/var/www/html --title="$TITLE" --url=$DOMAIN
 
 wp user create --allow-root --path=/var/www/html "$USR_NAME" "$USR_EMAIL" --user_pass=$USR_PWD  --role='author'
 
-wp --allow-root theme activate twentytwentyfour
+wp --allow-root theme install astra
+wp theme activate astra --allow-root
 
 exec php-fpm7.4 -F

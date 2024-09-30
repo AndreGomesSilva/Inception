@@ -1,4 +1,23 @@
-all : up
+USER=angomes
+
+MARIADB_VOLUME=/home/$(USER)/data/mariadb
+WORDPRESS_VOLUME=/home/$(USER)/data/wordpress
+
+all : setup up
+
+setup:
+	@echo "Init setup..."
+	
+	@if ! grep -q '$(USER)' /etc/hosts; then \
+		echo "127.0.0.1 $(USER).42.fr" | sudo tee -a /etc/hosts > /dev/null; \
+	 fi
+	@if [ ! -d "$(MARIADB_VOLUME)" ]; then \
+		sudo mkdir -p $(MARIADB_VOLUME); \
+	 fi
+	@if [ ! -d "$(WORDPRESS_VOLUME)" ]; then \
+		sudo mkdir -p $(WORDPRESS_VOLUME); \
+	 fi
+	@echo "Finish setup..."
 
 up : 
 	@docker-compose -f ./srcs/docker-compose.yml up --build -d
