@@ -33,3 +33,14 @@ start :
 
 status : 
 	@docker ps
+
+clean :
+	@docker-compose -f ./srcs/docker-compose.yml down --rmi all --volumes
+
+fclean :
+	docker system prune --force --all --volumes
+	sudo rm -rf /home/$(USER)
+
+.PHONY: all up setup down status start clean fclean stop
+
+
