@@ -41,7 +41,7 @@ services:
       - inception
     expose:
       - 3306
-    restart: on-failure
+    restart: always
 ############################### WORDPRESS ##########################################
   wordpress:
     container_name: wordpress
@@ -76,7 +76,7 @@ services:
       - inception
     expose:
       - 9000
-    restart: on-failure
+    restart: always 
 ############################### NGINX ##########################################
   nginx:
     container_name: nginx
@@ -98,4 +98,4 @@ services:
      - wordpress_volume:/var/www/html
     networks:
       - inception
-    restart: on-failure
+    restart: always
