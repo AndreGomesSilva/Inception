@@ -37,9 +37,11 @@ status :
 clean :
 	@docker-compose -f ./srcs/docker-compose.yml down --rmi all --volumes
 
-fclean :
+fclean : clean
 	docker system prune --force --all --volumes
 	sudo rm -rf /home/$(USER)
+
+re: fclean all
 
 .PHONY: all up setup down status start clean fclean stop
 
